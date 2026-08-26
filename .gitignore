@@ -1,0 +1,37 @@
+# CMake build output
+build/
+cmake-build-*/
+
+# Compiled binaries and object files
+*.exe
+*.out
+*.obj
+*.o
+*.pdb
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+compile_commands.json
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.user
+*.suo
+
+# Qt-generated files (for later)
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+
+# Local environment/configuration secrets (for later)
+.env
+config/local.*
