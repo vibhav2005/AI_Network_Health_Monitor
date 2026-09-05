@@ -6,6 +6,27 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_executable(network_health_monitor
-    src/main.cpp
+
+
+add_executable(network_health_monitor_server
+    src/server/tcp_server.cpp
+    src/server/server_main.cpp
 )
+
+target_include_directories(network_health_monitor_server PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+target_link_libraries(network_health_monitor_server PRIVATE ws2_32)
+
+
+add_executable(network_health_monitor_client
+    src/client/client_sim.cpp
+    src/client/client_main.cpp
+)
+
+target_include_directories(network_health_monitor_client PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+target_link_libraries(network_health_monitor_client PRIVATE ws2_32)
