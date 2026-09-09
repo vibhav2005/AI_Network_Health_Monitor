@@ -23,6 +23,7 @@ target_link_libraries(network_health_monitor_server PRIVATE ws2_32)
 add_executable(network_health_monitor_client
     src/client/client_sim.cpp
     src/client/client_main.cpp
+    src/client/client_telemetry.cpp
 )
 
 target_include_directories(network_health_monitor_client PRIVATE
