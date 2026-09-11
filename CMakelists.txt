@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 
-
+#tcp server setup
 add_executable(network_health_monitor_server
     src/server/tcp_server.cpp
     src/server/server_main.cpp
@@ -19,7 +19,7 @@ target_include_directories(network_health_monitor_server PRIVATE
 
 target_link_libraries(network_health_monitor_server PRIVATE ws2_32)
 
-
+#tcp server client setup 
 add_executable(network_health_monitor_client
     src/client/client_sim.cpp
     src/client/client_main.cpp
@@ -31,3 +31,17 @@ target_include_directories(network_health_monitor_client PRIVATE
 )
 
 target_link_libraries(network_health_monitor_client PRIVATE ws2_32)
+
+# PostgreSQL
+target_include_directories(network_health_monitor_server PRIVATE
+    "C:/msys64/ucrt64/include"
+)
+
+target_link_directories(network_health_monitor_server PRIVATE
+    "C:/msys64/ucrt64/lib"
+)
+
+target_link_libraries(network_health_monitor_server PRIVATE
+    ws2_32
+    pq
+)
