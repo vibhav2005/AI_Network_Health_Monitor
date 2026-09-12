@@ -11,10 +11,12 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_executable(network_health_monitor_server
     src/server/tcp_server.cpp
     src/server/server_main.cpp
+    src/database/database_manager.cpp
 )
 
 target_include_directories(network_health_monitor_server PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/Include
+    ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 target_link_libraries(network_health_monitor_server PRIVATE ws2_32)
@@ -27,7 +29,8 @@ add_executable(network_health_monitor_client
 )
 
 target_include_directories(network_health_monitor_client PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/Include
+    ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 target_link_libraries(network_health_monitor_client PRIVATE ws2_32)

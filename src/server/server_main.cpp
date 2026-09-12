@@ -1,27 +1,33 @@
-#include "server/tcp_server.hpp"
-#include "D:/postgreSql/include/libpq-fe.h"
+#include "database/database_manager.hpp"
 #include <iostream>
 
-int main(){
+int main()
+{
+    database_manager db;
 
-    const char* conninfo =
-        "host=localhost "
-        "port=5432 "
-        "dbname=Network_Monitor "
-        "user=postgres "
-        "password=1234";
-
-    PGconn* conn = PQconnectdb(conninfo);
-
-    if (PQstatus(conn) == CONNECTION_OK)
+    if (!db.loadFromEnvFile("E:/CPP_Projects/AI_network_monitoring/.env"))
     {
-        std::cout << "PostgreSQL connection successful!\n";
-    }
-    else
-    {
-        std::cerr << "Connection failed: "
-                  << PQerrorMessage(conn);
+        std::cout << "No .env file found. Using default config.\n";
     }
 
-    PQfinish(conn);
+    database_config cfg = db.getLoadedConfig();
+    std::cout << "Loaded host=" << cfg.host
+              << " port=" << cfg.port
+              << " db=" << cfg.dbname
+              << " user=" << cfg.user << "\n";
+
+    if (!db.connect(cfg))
+    {
+        std::cerr << "Database connection failed.\n";
+        return 1;
+    }
+
+    std::cout << "Connected to PostgreSQL\n";
+    std::cout << "Server address: " << db.getServerAddress() << "\n";
+    std::cout << "Server version: " << db.getServerVersion() << "\n";
+    std::cout << "Transaction status: " << db.getTransactionStatus() << "\n";
+
+    db.executeQuery("SELECT * FROM devices;");
+
+    return 0;
 }
