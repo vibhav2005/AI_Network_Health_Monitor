@@ -12,6 +12,7 @@ add_executable(network_health_monitor_server
     src/server/tcp_server.cpp
     src/server/server_main.cpp
     src/database/database_manager.cpp
+    src/database/database_toolkit.cpp
 )
 
 target_include_directories(network_health_monitor_server PRIVATE
