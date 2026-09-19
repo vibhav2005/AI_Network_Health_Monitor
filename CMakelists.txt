@@ -6,6 +6,42 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+include(FetchContent)
+
+FetchContent_Declare(
+    Crow
+    GIT_REPOSITORY https://github.com/CrowCpp/Crow.git
+    GIT_TAG master
+)
+
+FetchContent_MakeAvailable(Crow)
+
+# Standalone Phase 4A REST server.
+add_executable(network_health_monitor_rest
+    src/main.cpp
+    src/api/rest_server.cpp
+    src/api/system_routes.cpp
+    src/database/database_manager.cpp
+    src/database/database_toolkit.cpp
+)
+
+target_include_directories(network_health_monitor_rest PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/Include
+    "C:/msys64/ucrt64/include"
+    "D:/postgreSql/include"
+)
+
+target_link_directories(network_health_monitor_rest PRIVATE
+    "C:/msys64/ucrt64/lib"
+    "D:/postgreSql/lib"
+)
+
+target_link_libraries(network_health_monitor_rest PRIVATE
+    Crow::Crow
+    ws2_32
+    mswsock
+    pq
+)
 
 #tcp server setup
 add_executable(network_health_monitor_server

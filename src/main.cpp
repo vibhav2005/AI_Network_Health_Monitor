@@ -1,6 +1,9 @@
-#include <iostream>
+#include "api/rest_server.hpp"
 
-int main() {
-    std::cout << "AI-Powered Network Health Monitor is starting...\n";
+int main()
+{
+    RestServer server;
+    server.run();
+
     return 0;
 }
