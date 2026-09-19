@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-#include "D:/postgreSql/include/libpq-fe.h"
+#include <libpq-fe.h>
 
 struct database_config
 {

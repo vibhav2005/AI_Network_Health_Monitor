@@ -21,6 +21,9 @@ add_executable(network_health_monitor_rest
     src/main.cpp
     src/api/rest_server.cpp
     src/api/system_routes.cpp
+    src/api/device_routes.cpp
+    src/api/telemetry_routes.cpp
+    src/api/alert_routes.cpp
     src/database/database_manager.cpp
     src/database/database_toolkit.cpp
 )
@@ -28,12 +31,10 @@ add_executable(network_health_monitor_rest
 target_include_directories(network_health_monitor_rest PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/Include
     "C:/msys64/ucrt64/include"
-    "D:/postgreSql/include"
 )
 
 target_link_directories(network_health_monitor_rest PRIVATE
     "C:/msys64/ucrt64/lib"
-    "D:/postgreSql/lib"
 )
 
 target_link_libraries(network_health_monitor_rest PRIVATE
